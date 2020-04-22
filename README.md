@@ -1,6 +1,9 @@
 # Pointcloud with Revit
 Combining Potree with Revit models inside Forge Viewer
 
+Walkthrough Video: https://youtu.be/15m2xjIRjy4
+
+
 This is a sample application based on the work by Petr Broz
 https://github.com/petrbroz/forge-potree-demo
 
