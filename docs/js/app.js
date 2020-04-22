@@ -20,8 +20,8 @@ class demoViewer {
 
 	async addPointcloud(url) {
 		const potreeExtension = this.viewer.getExtension('PotreeExtension');
-		let position = new THREE.Vector3(0, 0, -25);
-		let scale = new THREE.Vector3(5, 5, 5);
+		let position = new THREE.Vector3(-220, -10, -50);
+		let scale = new THREE.Vector3(1.5, 1.5, 1.5);
 		const pointcloud = await potreeExtension.loadPointCloud("pc1", url, position, scale);
 		const bbox = pointcloud.boundingBox.clone().expandByVector(scale);
 	}
