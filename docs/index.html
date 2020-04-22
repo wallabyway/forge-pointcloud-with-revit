@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="data:,">
+    <link  href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.css" rel="stylesheet" >
+
+    <title>PointCloud+CAD</title>
+    <link href="https://wallabyway.github.io/floor-animation/skeleton.min.css" rel="stylesheet" >
+    <script src="https://xf79h9aa3l.execute-api.us-west-2.amazonaws.com/toolkit2/api/_adsk.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.js"></script>
+    <script src="./js/potree/potree.js"></script>
+    <script src="./js/potree/PotreeExtension.js"></script>
+</head>
+
+<body onload="app.loadModel('dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6cm9tYV90cmUvMDFfUGFsYXp6b1NpbHZlc3RyaVJpdmFsZGlfTWFzdGVyLnJ2dA','http://5.9.65.151/mschuetz/potree/resources/pointclouds/archpro/heidentor/cloud.js')" style="margin:0; overflow-y: hidden;">
+ <div class="container">
+    <nav class="navbar">
+      <div class="container">
+        <ul class="navbar-list">
+          <li class="navbar-item"><img class="navbar-button navbar-img" src="https://wallabyway.github.io/floor-animation/logo.png"/></li>
+          <li class="navbar-item"><button onClick="app.view=0" class="navbar-button button-primary">Camera1</button></li>
+          <li class="navbar-item"><button onClick="app.view=1" class="navbar-button button-primary">Camera2</button></li>
+          <li class="navbar-itemr mobile"><a class="navbar-button button" href="https://github.com/wallabyway/forge-pointcloud-with-revit">Github</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div id="forgeViewer"></div>
+</body>
+
+
+<script>
+    const viewStates = [
+        {"cutplanes":[],"viewport":{"name":"home","eye":[-166.74664453969388,277.9140773561843,187.42391616062744],"target":[100.8422754811649,-147.90059440121024,-139.83526379080607],"up":[0.2902037728147063,-0.46180172278515513,0.8381652218248935],"worldUpVector":[0,0,1],"pivotPoint":[0,0,0],"distanceToOrbit":373.8154103829354,"aspectRatio":1.9701046337817638,"projection":"perspective","isOrthographic":false,"fieldOfView":43.72416368179472}},
+        {"viewport":{"name":"section","eye":[-99.78758019725808,20.04047161847989,49.24496449748614],"target":[-77.97890436085987,18.0352909780658,39.82104200309509],"up":[0.39360246404792487,-0.036189452621921615,0.9185681378179453],"worldUpVector":[0,0,1],"pivotPoint":[36.857277393341064,8.686334609985352,-23.266039848327637],"distanceToOrbit":154.60620803938318,"aspectRatio":1.9701046337817638,"projection":"perspective","isOrthographic":false,"fieldOfView":43.72416368179472},"cutplanes":[[-0.9999999999999998,0,0,16.226270675659176]]}
+    ];
+
+    let app = new demoViewer(
+        document.getElementById('forgeViewer'), 
+        ["PotreeExtension", "Autodesk.Viewing.MarkupsCore", "Autodesk.Viewing.MarkupsGui"],
+        viewStates
+    );
+</script>
