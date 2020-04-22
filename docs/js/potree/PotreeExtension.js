@@ -17,7 +17,10 @@ class PotreeExtension extends Autodesk.Viewing.Extension {
         // Update point clouds on every camera change...
         this.viewer.addEventListener(Autodesk.Viewing.CAMERA_CHANGE_EVENT, this.updatePointClouds.bind(this));
         // ... and also in hard-coded intervals
-        //this._timer = setInterval(this.updatePointClouds.bind(this), 500);
+        this._timer = setInterval(()=>{
+            this.updatePointClouds();
+            this.viewer.impl.invalidate(true,true,true);
+        }, 1000);
 
         console.log('PotreeExtension loaded.');
         return true;
