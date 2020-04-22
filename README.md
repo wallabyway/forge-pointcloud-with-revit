@@ -5,7 +5,7 @@ This is a sample application based on the work by Petr Broz
 https://github.com/petrbroz/forge-potree-demo
 
 
-![point-cloud-demo](https://user-images.githubusercontent.com/440241/79944026-631e3c80-841f-11ea-86a6-343897212080.jpg)
+![forge-pointcloud-revit](https://user-images.githubusercontent.com/440241/80035021-22b4d200-84a4-11ea-9a7b-06c241f6a443.jpg)
 
 Features
 - ForgeViewer's markup, sectioning and measure tools
