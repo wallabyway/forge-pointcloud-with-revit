@@ -15,17 +15,39 @@
     <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.js"></script>
     <script src="./js/potree/potree.js"></script>
     <script src="./js/potree/PotreeExtension.js"></script>
+    <script src="./js/labelsExtension.js"></script>
+    <style>
+        .label:hover { font-size:16px; z-index:2; width:36px;  opacity: 1; border: 3px solid white }
+        .label:focus { font-size:16px; z-index:2; width:36px;  opacity: 1; background-color: cornflowerblue; border: 4px solid white; outline: none;}
+        .label {
+            width:24px;
+            font-size:12px;
+            overflow: hidden;
+            border: 1px solid white;
+            border-radius: 10px;
+            background: black;
+            color: white;
+            padding: 0 6px 0 6px;
+            opacity: 0.6;
+        }
+    </style>
+
 </head>
 
-<body onload="app.loadModel('dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6cm9tYV90cmUvMDFfUGFsYXp6b1NpbHZlc3RyaVJpdmFsZGlfTWFzdGVyLnJ2dA','https://geotest.ngu.no/kart/webgl/preikestolen/pointclouds/Preikestolen/cloud.js')" style="margin:0; overflow-y: hidden;">
+<body onload="app.loadModel('dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6cm9tYV90cmUvMDFfUGFsYXp6b1NpbHZlc3RyaVJpdmFsZGlfTWFzdGVyLnJ2dA','./scan-data/cloud.js')" style="margin:0; overflow-y: hidden;">
  <div class="container">
     <nav class="navbar">
       <div class="container">
         <ul class="navbar-list">
           <li class="navbar-item"><img class="navbar-button navbar-img" src="https://wallabyway.github.io/floor-animation/logo.png"/></li>
-          <li class="navbar-item"><button onClick="app.view=0" class="navbar-button button-primary">Camera1</button></li>
-          <li class="navbar-item"><button onClick="app.view=1" class="navbar-button button-primary">Camera2</button></li>
+          <li class="navbar-item"><button onClick="app.view=0" class="navbar-button button-primary">Aerial</button></li>
+          <li class="navbar-item"><button onClick="app.view=1" class="navbar-button button-primary">Level 1</button></li>
+          <li class="navbar-item"><button onClick="app.view=2" class="navbar-button button-primary">Scanned Room</button></li>
+          <li class="navbar-item"><button onClick="window.location=`https://www.google.com/maps/place/Isma/@41.892699,12.4891719,482a,35y,38.71h,0.2t/data=!3m1!1e3!4m8!1m2!2m1!1spalazzo+silvestri+rivaldi+-+22+luglio!3m4!1s0x132f6050061bb02d:0x4ad5c72a3692933!8m2!3d41.8927688!4d12.4893375`" class="navbar-button button-primary">Google Maps</button></li>
           <li class="navbar-itemr mobile"><a class="navbar-button button" href="https://github.com/wallabyway/forge-pointcloud-with-revit">Github</a></li>
+          <li class="navbar-itemr mobile"><a class="navbar-button button" href="https://github.com/wallabyway/forge-pointcloud-with-revit/wiki/Stats-on-Demo">Stats</a></li>
+
+
         </ul>
       </div>
     </nav>
@@ -36,13 +58,19 @@
 
 <script>
     const viewStates = [
-        {"viewport":{"name":"","eye":[119.2202582220356,-370.7141539079511,291.39199391720973],"target":[-34.545996099716916,118.63791263385514,-19.913370102419492],"up":[-0.15553055894541123,0.4949668623070076,0.8548789683060896],"worldUpVector":[0,0,1],"pivotPoint":[0,0,0],"distanceToOrbit":484.075661169079,"aspectRatio":1.5095628415300546,"projection":"perspective","isOrthographic":false,"fieldOfView":43.72416368179472}},
-        {"objectSet":[{"id":[],"idType":"lmv","isolated":[4821,4831,4899],"hidden":[],"explodeScale":0}],"viewport":{"name":"","eye":[11.800864693059097,49.11792327419808,13.379847758452428],"target":[-439.7139236369467,250.8536350296119,-326.4107262516567],"up":[-0.517040282674678,0.2310123436208719,0.8241981819844553],"worldUpVector":[0,0,1],"pivotPoint":[-28.663859367370605,54.76304817199707,-12.95271921157837],"distanceToOrbit":47.25998983814178,"aspectRatio":1.5095628415300546,"projection":"perspective","isOrthographic":false,"fieldOfView":43.72416368179472}}
+      {"objectSet":[{"id":[],"idType":"lmv","isolated":[],"hidden":[6105,4575,4576,4577,6105,6292],"explodeScale":0}],"viewport":{"name":"","eye":[62.76051650201158,407.9951280464312,929.502169385543],"target":[54.85425341858843,298.4236776854795,674.5833844865209],"up":[-0.06609309477725307,-0.9159720815224818,0.39576110053179464],"worldUpVector":[0,0,1],"pivotPoint":[-73.61604309082031,-9.485115051269531,-23.108558654785156],"distanceToOrbit":1043.511748150264,"aspectRatio":1.7404371584699454,"projection":"perspective","isOrthographic":false,"fieldOfView":38.43010436861473}},
+
+       {isWalk:true, "objectSet":[{"id":[],"idType":"lmv","isolated":[3275,4457,4459,4461,4463,4465,4669,4690,4707,6105],"hidden":[],"explodeScale":0}],"viewport":{"name":"","eye":[8.938386940158557,9.141562733740743,-16.868400693315376],"target":[35.94149207844622,-41.308277119711434,-14.80467218986501],"up":[-0.01700820078995832,0.031776382814290224,0.999350280232676],"worldUpVector":[0,0,1],"pivotPoint":[36.857277393341064,-5.503913879394531,-22.353966236114502],"distanceToOrbit":25.872499781071017,"aspectRatio":2.0869565217391304,"projection":"perspective","isOrthographic":false,"fieldOfView":38.43010436861473}},
+
+       {"viewport":{"name":"","eye":[32.540835219382515,-41.40290771187063,-16.710920378941406],"target":[86.7343311042422,-58.67277417404146,-23.301043279221915],"up":[0.10965947379180085,-0.03494523536034524,0.993354735395828],"worldUpVector":[0,0,1],"pivotPoint":[48.05458017319529,-45.21397196205779,-22.616432189941406],"distanceToOrbit":16.512265669737598,"aspectRatio":2.0869565217391304,"projection":"perspective","isOrthographic":false,"fieldOfView":38.43010436861473}}
     ];
+
+    window.devicePixelRatio = 1.5;
 
     let app = new demoViewer(
         document.getElementById('forgeViewer'), 
-        ["PotreeExtension", "Autodesk.Viewing.MarkupsCore", "Autodesk.Viewing.MarkupsGui"],
+        ["PotreeExtension", "Autodesk.Viewing.MarkupsCore", "Autodesk.Viewing.MarkupsGui",   "Autodesk.AEC.LevelsExtension", 
+          "Autodesk.AEC.Minimap3DExtension", "LabelsExtension"],
         viewStates
     );
 </script>

@@ -463,7 +463,7 @@
 				var pointAttributeName = pointAttributes[i];
 				var pointAttribute = PointAttribute[pointAttributeName];
 				this.attributes.push(pointAttribute);
-				this.byteSize += pointAttribute.byteSize;
+				this.byteSize += (pointAttribute.byteSize || pointAttribute.size);
 				this.size++;
 			}
 		}

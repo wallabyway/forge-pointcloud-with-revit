@@ -58,14 +58,14 @@ class PotreeExtension extends Autodesk.Viewing.Extension {
                 if (scale) {
                     pointcloud.scale.copy(scale);
                 }
-                pointcloud.pointBudget = numPoints || 500000;
-                pointcloud.visiblePointsTarget = 2500;
+                pointcloud.pointBudget = numPoints || 750000;
+                //pointcloud.visiblePointsTarget = 2500;
                 //pointcloud.showBoundingBox=true; //doesn't seem to work ?
                 material.size = 11;
                 material._useEDL = false; //doesn't seem to work ?
                 material.pointColorType = Potree.PointColorType.RGB; //RGB | DEPTH | HEIGHT | POINT_INDEX | LOD | CLASSIFICATION
                 material.pointSizeType = Potree.PointSizeType.FIXED; //ADAPTIVE | FIXED | ATTENUATED
-                material.shape = Potree.PointShape.CIRCLE; //CIRCLE | SQUARE
+                material.shape = Potree.PointShape.SQUARE; //CIRCLE | SQUARE
                 this._group.add(pointcloud);
                 this._pointclouds.set(name, pointcloud);
                 this.updatePointClouds();
@@ -80,7 +80,7 @@ class PotreeExtension extends Autodesk.Viewing.Extension {
             const camera = this.viewer.impl.camera; //.perspectiveCamera;
             const renderer = this.viewer.impl.glrenderer();
             Potree.updatePointClouds(pointclouds, camera, renderer);
-            Potree.onBeforeRender
+            Potree.updateVisibility(pointclouds, camera, renderer);
         }
     }
 }
