@@ -26,7 +26,7 @@ class demoViewer {
 		var geom = new THREE.PlaneBufferGeometry( 2200 * 0.6, 1500 * 0.6 );	
 		var material = new THREE.MeshPhongMaterial({ opacity:1 ,transparent:false, map:THREE.ImageUtils.loadTexture(imageUrl) });
 		var mesh = new THREE.Mesh(geom, material);
-		mesh.position.set(60, -10, -25);
+		mesh.position.set(60, -11.5, -25);
 		mesh.rotateZ(3.08);
 		this.viewer.overlays.addScene('map-scene');	
 		this.viewer.overlays.addMesh(mesh, 'map-scene');
@@ -36,8 +36,9 @@ class demoViewer {
 	// example load point cloud, must point to a cloud.js file (v1.7)
 	async addPointcloud(url) {
 		const potreeExtension = this.viewer.getExtension('PotreeExtension');
-		let position = new THREE.Vector3(22.3,-64,-22.5);
-		let scale = new THREE.Vector3(3.2,3.2,3.2);
+		let position = new THREE.Vector3(68,109,-29.5);
+		const metersToFeet = 3.281;
+		let scale = new THREE.Vector3(metersToFeet,metersToFeet,metersToFeet);
 		const pointcloud = await potreeExtension.loadPointCloud("pc1", url, position, scale);
 		const bbox = pointcloud.boundingBox.clone().expandByVector(scale);
 	}
@@ -55,7 +56,7 @@ class demoViewer {
 	            this.view = 0;
 	            setTimeout(()=>{
 	            	this.viewer.hide([4575, 4576, 4577]);
-	            	this.addLabels();
+	            	//this.addLabels();
 	            },2000);
             });
         });
@@ -65,6 +66,7 @@ class demoViewer {
 	set view(i) {
 		this.viewer.restoreState(this.viewStates[i]);
 		this.viewer.impl.skipAOWhenMoving=true; //force 'smooth navigation setting'
+		this.viewer.setGhosting(false); //for much faster rendering performance, turn this feature off
 
 		const ext = this.viewer.getExtension("Autodesk.BimWalk");
 		if (!ext) return;
@@ -77,7 +79,7 @@ class demoViewer {
 	}
 
 	get view() {
-		return this.viewer.getState({ viewport : true });
+		return this.viewer.getState({ objectSet: true, viewport: true });
 	}
 
 }

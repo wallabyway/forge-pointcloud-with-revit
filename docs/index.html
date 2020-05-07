@@ -15,7 +15,6 @@
     <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.js"></script>
     <script src="./js/potree/potree.js"></script>
     <script src="./js/potree/PotreeExtension.js"></script>
-    <script src="./js/labelsExtension.js"></script>
     <style>
         .label:hover { font-size:16px; z-index:2; width:36px;  opacity: 1; border: 3px solid white }
         .label:focus { font-size:16px; z-index:2; width:36px;  opacity: 1; background-color: cornflowerblue; border: 4px solid white; outline: none;}
@@ -34,15 +33,17 @@
 
 </head>
 
-<body onload="app.loadModel('dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6cm9tYV90cmUvMDFfUGFsYXp6b1NpbHZlc3RyaVJpdmFsZGlfTWFzdGVyLnJ2dA','./scan-data/cloud.js')" style="margin:0; overflow-y: hidden;">
+<body onload="app.loadModel('dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6cm9tYV90cmUvMDFfUGFsYXp6b1NpbHZlc3RyaVJpdmFsZGlfTWFzdGVyLnJ2dA','./roma/cloud.js')" style="margin:0; overflow-y: hidden;">
  <div class="container">
     <nav class="navbar">
       <div class="container">
         <ul class="navbar-list">
           <li class="navbar-item"><img class="navbar-button navbar-img" src="https://wallabyway.github.io/floor-animation/logo.png"/></li>
           <li class="navbar-item"><button onClick="app.view=0" class="navbar-button button-primary">Aerial</button></li>
-          <li class="navbar-item"><button onClick="app.view=1" class="navbar-button button-primary">Level 1</button></li>
-          <li class="navbar-item"><button onClick="app.view=2" class="navbar-button button-primary">Scanned Room</button></li>
+          <li class="navbar-item"><button onClick="app.view=2" class="navbar-button button-primary">Courtyard</button></li>
+          <li class="navbar-item"><button onClick="app.view=1" class="navbar-button button-primary">Floors</button></li>
+          <li class="navbar-item"><button onClick="app.view=3" class="navbar-button button-primary">Room 1</button></li>
+          <li class="navbar-item"><button onClick="app.view=4" class="navbar-button button-primary">Room 2</button></li>
           <li class="navbar-item"><button onClick="window.location=`https://www.google.com/maps/place/Isma/@41.892699,12.4891719,482a,35y,38.71h,0.2t/data=!3m1!1e3!4m8!1m2!2m1!1spalazzo+silvestri+rivaldi+-+22+luglio!3m4!1s0x132f6050061bb02d:0x4ad5c72a3692933!8m2!3d41.8927688!4d12.4893375`" class="navbar-button button-primary">Google Maps</button></li>
           <li class="navbar-itemr mobile"><a class="navbar-button button" href="https://github.com/wallabyway/forge-pointcloud-with-revit">Github</a></li>
           <li class="navbar-itemr mobile"><a class="navbar-button button" href="https://github.com/wallabyway/forge-pointcloud-with-revit/wiki/Stats-on-Demo">Stats</a></li>
@@ -60,9 +61,14 @@
     const viewStates = [
       {"objectSet":[{"id":[],"idType":"lmv","isolated":[],"hidden":[6105,4575,4576,4577,6105,6292],"explodeScale":0}],"viewport":{"name":"","eye":[62.76051650201158,407.9951280464312,929.502169385543],"target":[54.85425341858843,298.4236776854795,674.5833844865209],"up":[-0.06609309477725307,-0.9159720815224818,0.39576110053179464],"worldUpVector":[0,0,1],"pivotPoint":[-73.61604309082031,-9.485115051269531,-23.108558654785156],"distanceToOrbit":1043.511748150264,"aspectRatio":1.7404371584699454,"projection":"perspective","isOrthographic":false,"fieldOfView":38.43010436861473}},
 
-       {isWalk:true, "objectSet":[{"id":[],"idType":"lmv","isolated":[3275,4457,4459,4461,4463,4465,4669,4690,4707,6105],"hidden":[],"explodeScale":0}],"viewport":{"name":"","eye":[8.938386940158557,9.141562733740743,-16.868400693315376],"target":[35.94149207844622,-41.308277119711434,-14.80467218986501],"up":[-0.01700820078995832,0.031776382814290224,0.999350280232676],"worldUpVector":[0,0,1],"pivotPoint":[36.857277393341064,-5.503913879394531,-22.353966236114502],"distanceToOrbit":25.872499781071017,"aspectRatio":2.0869565217391304,"projection":"perspective","isOrthographic":false,"fieldOfView":38.43010436861473}},
+      {"objectSet":[{"id":[],"idType":"lmv","isolated":[],"hidden":[4570,5855,4575,4577,4576,6162,6163,6219,6397,4451,3087,6402,6481],"explodeScale":0}],"viewport":{"name":"","eye":[245.70203298742348,152.18421019654937,34.45413448034436],"target":[217.5364913745419,128.6584043442078,30.008940098068557],"up":[-0.0922901589813758,-0.07708711560102098,0.9927437248169877],"worldUpVector":[0,0,1],"pivotPoint":[94.81084174531516,-28.729171095029884,23.741836547851562],"distanceToOrbit":231.39022845567598,"aspectRatio":1.6070478277396418,"projection":"perspective","isOrthographic":false,"fieldOfView":38.43010436861473}},
 
-       {"viewport":{"name":"","eye":[32.540835219382515,-41.40290771187063,-16.710920378941406],"target":[86.7343311042422,-58.67277417404146,-23.301043279221915],"up":[0.10965947379180085,-0.03494523536034524,0.993354735395828],"worldUpVector":[0,0,1],"pivotPoint":[48.05458017319529,-45.21397196205779,-22.616432189941406],"distanceToOrbit":16.512265669737598,"aspectRatio":2.0869565217391304,"projection":"perspective","isOrthographic":false,"fieldOfView":38.43010436861473}}
+      {isWalk:true, "objectSet":[{"id":[4450],"idType":"lmv","isolated":[],"hidden":[4570,5855,4575,4577,4576,6162,6163,6219,6397,4451],"explodeScale":0}],"viewport":{"name":"","eye":[42.0663502509568,17.619937722747455,-16.868400693315376],"target":[64.40160408253288,-11.122469350875186,-10.423906893298465],"up":[-0.1069708188070425,0.13765676639878088,0.9846866804158481],"worldUpVector":[0,0,1],"pivotPoint":[-10.68678593635559,-23.03173065185547,-12.363808155059814],"distanceToOrbit":0.519441652813152,"aspectRatio":1.6070478277396418,"projection":"perspective","isOrthographic":false,"fieldOfView":38.43010436861473}},
+
+       {isWalk:true, "objectSet":[{"id":[],"idType":"lmv","isolated":[],"hidden":[6105,4575,4576,4577,6292,4542,4570,5621,5622,5623,5640,5641,5659,5844,5845,5846,5848,5855,5870,4555,6499,6519,5803,5871,5878,5869],"explodeScale":0}],"viewport":{"name":"","eye":[128.15329558142838,30.499626320182667,40.28725354936651],"target":[103.10750685931059,12.943127377881474,27.325771623482293],"up":[-0.3195006806404534,-0.2239623365015086,0.9207389352574769],"worldUpVector":[0,0,1],"pivotPoint":[97.09925842285156,-10.99493658542633,8.403908729553223],"distanceToOrbit":57.78349430109448,"aspectRatio":1.6070478277396418,"projection":"perspective","isOrthographic":false,"fieldOfView":38.43010436861473}},
+
+        {isWalk:true, "objectSet":[{"id":[5639],"idType":"lmv","isolated":[],"hidden":[6105,4575,4576,4577,6292,4542,4570,5621,5622,5623,5640,5641,5659,5844,5845,5846,5848,5855,5870,4555,6499,6519,5803,5871,5878,5869,5770,5656,5867,5657,5868],"explodeScale":0}],"viewport":{"name":"","eye":[87.31550694232128,-34.93203060378738,15.37569232247461],"target":[85.65883969302294,-1.7566338363761034,15.788856320061463],"up":[0.0006203121328389773,-0.012421988263055392,0.9999226517188469],"worldUpVector":[0,0,1],"pivotPoint":[104.3701171875,39.4586067199707,8.403908729553223],"distanceToOrbit":73.35507562025765,"aspectRatio":1.6070478277396418,"projection":"perspective","isOrthographic":false,"fieldOfView":38.43010436861473}}
+
     ];
 
     window.devicePixelRatio = 1.5;
@@ -70,7 +76,7 @@
     let app = new demoViewer(
         document.getElementById('forgeViewer'), 
         ["PotreeExtension", "Autodesk.Viewing.MarkupsCore", "Autodesk.Viewing.MarkupsGui",   "Autodesk.AEC.LevelsExtension", 
-          "Autodesk.AEC.Minimap3DExtension", "LabelsExtension"],
+        ],
         viewStates
     );
 </script>

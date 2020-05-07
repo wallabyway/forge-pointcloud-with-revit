@@ -58,10 +58,11 @@ class PotreeExtension extends Autodesk.Viewing.Extension {
                 if (scale) {
                     pointcloud.scale.copy(scale);
                 }
-                pointcloud.pointBudget = numPoints || 750000;
+                pointcloud.rotation.z = -2.63;
+                pointcloud.pointBudget = numPoints || 1000000;
                 //pointcloud.visiblePointsTarget = 2500;
                 //pointcloud.showBoundingBox=true; //doesn't seem to work ?
-                material.size = 11;
+                material.size = 8;
                 material._useEDL = false; //doesn't seem to work ?
                 material.pointColorType = Potree.PointColorType.RGB; //RGB | DEPTH | HEIGHT | POINT_INDEX | LOD | CLASSIFICATION
                 material.pointSizeType = Potree.PointSizeType.FIXED; //ADAPTIVE | FIXED | ATTENUATED
