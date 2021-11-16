@@ -6,7 +6,7 @@ class demoViewer {
 		this.viewStates = viewStates;
 		this.options = {
 		    env: 'AutodeskProduction',
-		    accessToken: _adsk.token.access_token,
+		    accessToken: _access_token,
 		};
 		Autodesk.Viewing.Initializer( this.options, () => {
 	        let viewer = new Autodesk.Viewing.Private.GuiViewer3D(div, { extensions: extensions });
